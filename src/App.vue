@@ -24,7 +24,9 @@ export default {
     age () {
       let dob = new Date(this.dob)
       let today = new Date()
-      let age = today - dob
+      let dobYear = dob.getFullYear()
+      let todayYear = today.getFullYear()
+      let age = todayYear - dobYear
       return age
     }
   }
