@@ -3,27 +3,53 @@
     section.section
       nav.nav.has-shadow 
         .container
-          input.input.is-large(type="text", placeholder="buscar canciones")
-          a.button.is-info.is-large Buscar
+          input.input.is-large(
+            type="text", 
+            placeholder="buscar canciones", 
+            v-model="searchQuery"
+            )
+          a.button.is-info.is-large(@click="search") Buscar
           a.button.is-danger.is-large &times;
-
-      .container
+          p
+            small {{ searchMessage }}
+      
+      .container.results
           .columns
-            .cloumn
+            .column(v-for="track in tracks") {{ track.name }} {{ track.artist }}
 </template>
 
 <script>
+const tracks = [
+  {name: 'Muchacha', artist: 'Luis Alberto Spinetta'},
+  {name: 'Hoy aca en el baile', artist: 'El Pepo'},
+  {name: 'I was made for loving you', artist: 'Kiss'}
+]
+
 export default {
   name: 'app',
   data () {
-    return {}
+    return {
+      searchQuery: '',
+      tracks: []
+    }
+  },
+  computed: {
+    searchMessage () {
+      return `Encontrados: ${this.tracks.length}`
+    }
   },
   methods: {
-    format () {}
+    search () {
+      this.tracks = tracks
+    }
   }
 }
 </script>
 
 <style lang="scss">
 @import "./scss/main.scss";
+
+.results { 
+  margin-top: 50px;
+}
 </style>
