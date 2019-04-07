@@ -1,34 +1,25 @@
 <template lang = "pug">
   #app
-    input(v-model="name")
-    input(v-model="lastName")
-    p {{ fullName }}
-    input(v-model="dob" placeholder="year-month-day")
-    p {{ age }}
+    section.section
+      nav.nav.has-shadow 
+        .container
+          input.input.is-large(type="text", placeholder="buscar canciones")
+          a.button.is-info.is-large Buscar
+          a.button.is-danger.is-large &times;
+
+      .container
+          .columns
+            .cloumn
 </template>
 
 <script>
 export default {
   name: 'app',
   data () {
-    return {
-      name: 'omar',
-      lastName: 'cesar',
-      dob: '1990-01-01'
-    }
+    return {}
   },
-  computed: {
-    fullName () {
-      return this.name + ' ' + this.lastName
-    },
-    age () {
-      let dob = new Date(this.dob)
-      let today = new Date()
-      let dobYear = dob.getFullYear()
-      let todayYear = today.getFullYear()
-      let age = todayYear - dobYear
-      return age
-    }
+  methods: {
+    format () {}
   }
 }
 </script>
